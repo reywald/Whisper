@@ -1,6 +1,7 @@
 import whisper
 from whisper import Whisper
-from .utilities import check_filename
+from .utilities import check_filename, ModelSelectionError
+from .app_settings import WHISPER_MODELS
 
 
 def create_model(model: str) -> Whisper:
@@ -16,6 +17,9 @@ def create_model(model: str) -> Whisper:
         :Whisper
             The Whisper instances selected/downloaded
     """
+
+    if model not in WHISPER_MODELS:
+        raise ModelSelectionError(f"Invalid model selected: {model}")
 
     return whisper.load_model(model)
 

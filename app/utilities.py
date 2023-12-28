@@ -40,7 +40,16 @@ def check_filename(filename: str) -> bool:
 
 class FileTypeError(Exception):
     """
-    Custome Error class to encapsulate the file-type error
+    Custom Error class to encapsulate the file-type error
+    """
+
+    def __init__(self, message) -> None:
+        super().__init__(message)
+
+
+class ModelSelectionError(Exception):
+    """
+    Custom Error class to represent selecting a non-existing model
     """
 
     def __init__(self, message) -> None:
