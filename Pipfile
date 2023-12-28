@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 openai-whisper = "*"
 pysimplegui = "*"
+pytest = "*"
+pathvalidate = "*"
 
 [dev-packages]
 

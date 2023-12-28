@@ -1,6 +1,6 @@
 import whisper
 from whisper import Whisper
-from pathlib import Path
+from .utilities import check_filename
 
 
 def create_model(model: str) -> Whisper:
@@ -36,18 +36,9 @@ def get_audio_file(filename: str):
             The audio waveform as a Numpy array
     """
 
-    fp = Path(filename)
-
-    if fp.exists():
-        if fp.suffix == ".mp3":
-            audio = whisper.load_audio(file=filename)
-            audio = whisper.pad_or_trim(audio)
-        
-        else:
-            raise Exception(f"{fp.name} should be an mp3 file")
-
-    else:
-        raise FileNotFoundError(f"{fp.name} not found")
+    if check_filename(filename):
+        audio = whisper.load_audio(file=filename)
+        audio = whisper.pad_or_trim(audio)
 
     return audio
 
